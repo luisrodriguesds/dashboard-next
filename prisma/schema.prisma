@@ -15,8 +15,8 @@ model User {
   name     String
   email    String @unique
   password String
-  photo    String
-  status   Int
+  photo    String @default("")
+  status   Int    @default(0)
 
   created_at DateTime @default(now())
   updated_at DateTime @default(now())

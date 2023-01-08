@@ -4,8 +4,8 @@ CREATE TABLE "users" (
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "photo" TEXT NOT NULL,
-    "status" INTEGER NOT NULL,
+    "photo" TEXT NOT NULL DEFAULT '',
+    "status" INTEGER NOT NULL DEFAULT 0,
     "created_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

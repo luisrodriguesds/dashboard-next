@@ -50,4 +50,8 @@ instalar ext do vscode e add no json settings
 migration
 npx prisma migrate dev
 
+See the data
 npx prisma studio
+
+Update the prisma types
+npx prisma generate
