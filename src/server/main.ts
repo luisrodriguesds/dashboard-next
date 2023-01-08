@@ -1,6 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import nextConnect from 'next-connect'
 import { handleApiError } from './common/errors/apiError'
+import { AuthMiddleware } from './common/middlewares/auth'
+import { IUser } from './modules/user/interfaces/IUser'
+
+export interface NextApiRequestExtend extends NextApiRequest {
+  auth: IUser | null
+}
 
 export const optionsHandler = {
   onError: (error: Error, req: NextApiRequest, res: NextApiResponse) => {
@@ -12,5 +18,7 @@ export const optionsHandler = {
 }
 
 export const apiHandler = () => {
-  return nextConnect<NextApiRequest, NextApiResponse>(optionsHandler)
+  return nextConnect<NextApiRequestExtend, NextApiResponse>(optionsHandler).use(
+    AuthMiddleware,
+  )
 }
