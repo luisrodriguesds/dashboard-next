@@ -11,7 +11,7 @@ export function DashboardTemplate({ children }: DashboardTemplateProps) {
     <Flex w="100%" h="100vh">
       <Sidebar />
 
-      <Flex w="100%" flexDirection="column" maxW={1480} mx="auto" px="6" pb="6">
+      <Flex w="100%" flexDirection="column" maxW={1480} mx="auto" pb="6">
         <Header />
         {children}
       </Flex>
