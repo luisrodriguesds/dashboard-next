@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { SidebarDrawerProvider } from '../hooks/SidebarDrawerContext'
 import { theme } from '../styles/theme'
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -22,7 +23,9 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <title>System ADM.</title>
       </Head>
-      <Component {...pageProps} />
+      <SidebarDrawerProvider>
+        <Component {...pageProps} />
+      </SidebarDrawerProvider>
     </ChakraProvider>
   )
 }

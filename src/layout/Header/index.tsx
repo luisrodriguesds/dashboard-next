@@ -1,27 +1,17 @@
-import {
-  ChevronDownIcon,
-  LockIcon,
-  BellIcon,
-  Search2Icon,
-} from '@chakra-ui/icons'
+import { BellIcon, Search2Icon } from '@chakra-ui/icons'
 import {
   Box,
   Flex,
   Icon,
   IconButton,
-  Image,
   Link,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
   Text,
   useBreakpointValue,
 } from '@chakra-ui/react'
-import { ReactNode } from 'react'
-// import { useRouter } from 'next/dist/client/router'
-import { RiLogoutBoxLine, RiMenuLine, RiUser3Fill } from 'react-icons/ri'
+import { RiMenuLine } from 'react-icons/ri'
+import { RoundCard } from '../../components/RoundCard'
 import { useSidebarDrawer } from '../../hooks/SidebarDrawerContext'
+import { UserMenu } from './UserMenu'
 
 export function Header() {
   // const route = useRouter()
@@ -35,7 +25,7 @@ export function Header() {
   // function handleSignOut() {
   //   route.replace('/')
   // }
-
+  console.log(onOpen)
   return (
     <Flex
       as="header"
@@ -49,34 +39,35 @@ export function Header() {
       justifyContent="space-between"
     >
       <Flex>
-        {!isWideVersion && (
+        {!isWideVersion ? (
           <IconButton
             aria-label="Open navigation"
             icon={<Icon as={RiMenuLine} />}
             fontSize="24"
             variant="unstyled"
-            onClick={onOpen}
+            onClick={() => onOpen()}
             mr="2"
           />
+        ) : (
+          <Flex flexDirection="column">
+            <Box as="nav">
+              <Flex as="ol" listStyleType="none">
+                <Flex as="li">
+                  <Link color="gray.400">Pages</Link>
+                  <Text as="span" mx="2">
+                    /
+                  </Text>
+                </Flex>
+                <Flex as="li">
+                  <Link>Dashboard</Link>
+                </Flex>
+              </Flex>
+            </Box>
+            <Link mt="1" fontWeight="bold">
+              Dashboard
+            </Link>
+          </Flex>
         )}
-        <Flex flexDirection="column">
-          <Box as="nav">
-            <Flex as="ol" listStyleType="none">
-              <Flex as="li">
-                <Link color="gray.400">Pages</Link>
-                <Text as="span" mx="2">
-                  /
-                </Text>
-              </Flex>
-              <Flex as="li">
-                <Link>Dashboard</Link>
-              </Flex>
-            </Flex>
-          </Box>
-          <Link mt="1" fontWeight="bold">
-            Dashboard
-          </Link>
-        </Flex>
       </Flex>
 
       <Flex align="center" gap="4">
@@ -84,7 +75,7 @@ export function Header() {
           gap="4"
           pr="4"
           align="center"
-          borderRightWidth="1px"
+          borderRightWidth={!isWideVersion ? '0' : '1px'}
           borderColor="gray.300"
         >
           <RoundCard>
@@ -94,69 +85,8 @@ export function Header() {
             <BellIcon fontSize="18" />
           </RoundCard>
         </Flex>
-        <Flex align="center">
-          <Menu>
-            <MenuButton as="button">
-              <Flex align="center" gap="2">
-                <Image
-                  h="48px"
-                  src="/images/avatar.png"
-                  alt="avatar"
-                  rounded="full"
-                />
-                <ChevronDownIcon />
-              </Flex>
-            </MenuButton>
-            <MenuList>
-              <Flex flexDirection="column">
-                <MenuItem py="3">
-                  <Icon as={RiUser3Fill} fontSize="18" mr="4" />
-                  <Text ml="2" fontSize="sm">
-                    My Account
-                  </Text>
-                </MenuItem>
-                <MenuItem py="3">
-                  <LockIcon fontSize="18" mr="4" />
-                  <Text ml="2" fontSize="sm">
-                    Change Password
-                  </Text>
-                </MenuItem>
-                <MenuItem color="red.400" py="3">
-                  <Icon as={RiLogoutBoxLine} fontSize="18" mr="4" />
-                  <Text ml="2" fontSize="sm">
-                    Logout
-                  </Text>
-                </MenuItem>
-              </Flex>
-            </MenuList>
-          </Menu>
-        </Flex>
-        <Box textAlign="left">
-          <Text fontWeight="bold" color="blue.400">
-            Luis
-          </Text>
-          <Text color="gray.500">luis@gmail.com</Text>
-        </Box>
+        {isWideVersion && <UserMenu />}
       </Flex>
-    </Flex>
-  )
-}
-
-interface RoundCardProps {
-  children: ReactNode
-}
-export function RoundCard({ children }: RoundCardProps) {
-  return (
-    <Flex
-      as="button"
-      rounded="full"
-      bg="gray.100"
-      h="48px"
-      w="48px"
-      justify="center"
-      align="center"
-    >
-      {children}
     </Flex>
   )
 }
