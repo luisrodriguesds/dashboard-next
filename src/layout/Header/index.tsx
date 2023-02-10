@@ -25,18 +25,15 @@ export function Header() {
   // function handleSignOut() {
   //   route.replace('/')
   // }
-  console.log(onOpen)
   return (
     <Flex
       as="header"
       w="100%"
-      // maxW={1480}
-      // h="20"
-      // mx="auto"
       py="4"
-      px="2"
+      px="6"
       align="center"
       justifyContent="space-between"
+      bg="white"
     >
       <Flex>
         {!isWideVersion ? (
@@ -44,7 +41,7 @@ export function Header() {
             aria-label="Open navigation"
             icon={<Icon as={RiMenuLine} />}
             fontSize="24"
-            variant="unstyled"
+            // variant="unstyled"
             onClick={() => onOpen()}
             mr="2"
           />
@@ -75,17 +72,17 @@ export function Header() {
           gap="4"
           pr="4"
           align="center"
-          borderRightWidth={!isWideVersion ? '0' : '1px'}
+          borderRightWidth="1px"
           borderColor="gray.300"
         >
           <RoundCard>
-            <Search2Icon fontFamily="18" />
+            <Search2Icon fontSize={isWideVersion ? '18' : '14'} />
           </RoundCard>
           <RoundCard>
-            <BellIcon fontSize="18" />
+            <BellIcon fontSize={isWideVersion ? '18' : '14'} />
           </RoundCard>
         </Flex>
-        {isWideVersion && <UserMenu />}
+        <UserMenu />
       </Flex>
     </Flex>
   )

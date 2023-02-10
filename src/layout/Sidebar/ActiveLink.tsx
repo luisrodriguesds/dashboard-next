@@ -1,4 +1,3 @@
-/* eslint-disable react/require-default-props */
 import Link, { LinkProps } from 'next/link'
 import { useRouter } from 'next/router'
 import { cloneElement, ReactElement } from 'react'
@@ -29,11 +28,19 @@ export function ActiveLink({
   ) {
     isActive = true
   }
-
+  const activeProps = isActive
+    ? {
+        color: 'blue.400',
+        bg: 'white',
+        rounded: 'lg',
+        py: '2',
+        px: '2',
+      }
+    : {}
   return (
     <Link {...rest}>
       {cloneElement(children, {
-        color: isActive ? 'blue.400' : '',
+        ...activeProps,
       })}
     </Link>
   )

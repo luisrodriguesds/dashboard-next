@@ -17,8 +17,7 @@ export function NavSection({ title, children, ...rest }: NavSectionProps) {
       >
         {title}
       </Text>
-
-      <Stack spacing="5" mt="6" align="stretch">
+      <Stack spacing="5" mt="4" align="stretch">
         {children}
       </Stack>
     </Box>
