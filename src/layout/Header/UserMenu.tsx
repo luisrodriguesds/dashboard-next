@@ -28,7 +28,7 @@ export function UserMenu({ ...rest }: FlexProps) {
             <Flex align="center" gap="2">
               <Image
                 h={isWideVersion ? '48px' : '32px'}
-                src="images/avatar.png"
+                src="/images/avatar.png"
                 alt="avatar"
                 rounded="full"
               />
@@ -40,7 +40,7 @@ export function UserMenu({ ...rest }: FlexProps) {
               <Flex py="3" px="2" gap="2">
                 <Image
                   h="38px"
-                  src="images/avatar.png"
+                  src="/images/avatar.png"
                   alt="avatar"
                   rounded="full"
                 />

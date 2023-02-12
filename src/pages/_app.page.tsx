@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { SidebarDrawerProvider } from '../hooks/SidebarDrawerContext'
 import { theme } from '../styles/theme'
+import { DashboardTemplate } from '../widgets/DashboardTemplate'
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -23,9 +24,15 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <title>System ADM.</title>
       </Head>
-      <SidebarDrawerProvider>
+      {router.asPath.startsWith('/dashboard') ? (
+        <SidebarDrawerProvider>
+          <DashboardTemplate>
+            <Component {...pageProps} />
+          </DashboardTemplate>
+        </SidebarDrawerProvider>
+      ) : (
         <Component {...pageProps} />
-      </SidebarDrawerProvider>
+      )}
     </ChakraProvider>
   )
 }

@@ -12,7 +12,6 @@ export function NavLink({ icon, children, href, ...rest }: NavLinkProps) {
   return (
     <ActiveLink href={href} passHref>
       <Link
-        to="/"
         display="flex"
         alignItems="center"
         p="2"

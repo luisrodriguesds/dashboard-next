@@ -9,7 +9,7 @@ interface DashboardTemplateProps {
 }
 export function DashboardTemplate({ children }: DashboardTemplateProps) {
   return (
-    <Flex w="100%" h="100vh">
+    <Flex w="100%" h={['auto', '100vh']}>
       <Sidebar />
       <Flex
         w="100%"

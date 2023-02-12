@@ -10,7 +10,7 @@ export function SidebarNav() {
         Dashboard
       </NavLink>
       <NavSection title="Menus">
-        <NavLink href="/users" icon={RiUser3Fill}>
+        <NavLink href="/dashboard/users" icon={RiUser3Fill}>
           Users
         </NavLink>
       </NavSection>
