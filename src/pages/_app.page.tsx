@@ -1,13 +1,13 @@
 import { ChakraProvider } from '@chakra-ui/react'
-import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { SidebarDrawerProvider } from '../hooks/SidebarDrawerContext'
+import { MyAppProps } from '../@types/AppPage'
+import { Layouts } from '../@types/LayoutKeys'
 import { theme } from '../styles/theme'
-import { DashboardTemplate } from '../widgets/DashboardTemplate'
+import { EmptyTemplate } from '../templates/EmptyTemplate'
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }: MyAppProps) {
   const router = useRouter()
   const [loading, setLoading] = useState(true)
   useEffect(() => {
@@ -19,20 +19,20 @@ export default function App({ Component, pageProps }: AppProps) {
   if (loading) {
     return <h1>Loading ...</h1>
   }
+
+  // Templates
+  const Layout = Component.Layout
+    ? Layouts[Component.Layout] ?? ((page) => page)
+    : EmptyTemplate
+
   return (
     <ChakraProvider theme={theme}>
-      <Head>
-        <title>System ADM.</title>
-      </Head>
-      {router.asPath.startsWith('/dashboard') ? (
-        <SidebarDrawerProvider>
-          <DashboardTemplate>
-            <Component {...pageProps} />
-          </DashboardTemplate>
-        </SidebarDrawerProvider>
-      ) : (
+      <Layout>
+        <Head>
+          <title>System ADM.</title>
+        </Head>
         <Component {...pageProps} />
-      )}
+      </Layout>
     </ChakraProvider>
   )
 }

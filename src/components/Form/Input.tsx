@@ -1,3 +1,4 @@
+import { Search2Icon } from '@chakra-ui/icons'
 import {
   FormControl,
   FormLabel,
@@ -34,5 +35,25 @@ export function Input({ label, error = '', iconLeft, ...rest }: InputProps) {
         </Text>
       )}
     </FormControl>
+  )
+}
+
+interface SearchInputProps {
+  onChange?: (value: any) => void
+  placeholder?: string
+}
+export function SearchInput({ onChange, placeholder }: SearchInputProps) {
+  return (
+    <InputGroup>
+      <InputLeftElement pointerEvents="none">
+        <Search2Icon color="gray.300" />
+      </InputLeftElement>
+      <ChakraInput
+        type="tel"
+        placeholder={placeholder}
+        backgroundColor="white"
+        onChange={(e) => onChange && onChange(e)}
+      />
+    </InputGroup>
   )
 }
